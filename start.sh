@@ -1,1 +1,1 @@
-bundle exec unicorn_rails -c ./config/unicorn.rb  -D 
+bundle exec unicorn_rails -c ./config/unicorn.rb  -D -E production
