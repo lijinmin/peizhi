@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :wechats
-  get '/' => 'WelcomeController#indexs'
+  # get '/' => 'WelcomeController#indexs'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
