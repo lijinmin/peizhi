@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730081434) do
+ActiveRecord::Schema.define(version: 20150801041012) do
+
+  create_table "tokens", force: :cascade do |t|
+    t.string   "appid",        limit: 255
+    t.string   "appsecret",    limit: 255
+    t.string   "access_token", limit: 255
+    t.datetime "update_time"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "wechats", force: :cascade do |t|
     t.datetime "created_at", null: false

@@ -5,28 +5,36 @@ class WechatsController < ApplicationController
   # GET /wechats.json
   def index
     @wechats = Wechat.all
-    unless params[:echostr].blank?
-      token = 'weixin'
+     logger.info "----------------"
+    logger.info "<xml>
+    <ToUserName><![CDATA[#{params["xml"]["FromUserName"]}]]></ToUserName>
+    <FromUserName><![CDATA[#{params["xml"]["ToUserName"]}]]></FromUserName>
+    <CreateTime>#{Time.now.to_i}</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[你好]]></Content>
+    </xml>"
+    # unless params[:echostr].blank?
+    #   token = 'weixin'
 
-      timestamp = params[:timestamp]
-      nonce = params[:nonce]
-      echostr = params[:echostr]
-      signature = params[:signature]
+    #   timestamp = params[:timestamp]
+    #   nonce = params[:nonce]
+    #   echostr = params[:echostr]
+    #   signature = params[:signature]
 
-      aray =  [token, timestamp, nonce].sort
-      tmp = ""
-      aray.each do |s|
-        tmp += s  
-      end
-      tmp = Digest::SHA1.hexdigest(tmp)
+    #   aray =  [token, timestamp, nonce].sort
+    #   tmp = ""
+    #   aray.each do |s|
+    #     tmp += s  
+    #   end
+    #   tmp = Digest::SHA1.hexdigest(tmp)
 
-      logger.info "---#{echostr}-------#{tmp == signature}----------"
-      if tmp == signature 
-        render :text => echostr
-      else 
-        render :text => ""
-      end
-    end
+    #   logger.info "---#{echostr}-------#{tmp == signature}----------"
+    #   if tmp == signature 
+    #     render :text => echostr
+    #   else 
+    #     render :text => ""
+    #   end
+    # end
   end
 
   # GET /wechats/1
